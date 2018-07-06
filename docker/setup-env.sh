@@ -6,7 +6,7 @@
 MYSQL_DATABASE="default"
 MYSQL_USER="default"
 MYSQL_PASSWORD="secret"
-MYSQL_PORT="3306"
+#MYSQL_PORT="3306"
 MYSQL_ROOT_PASSWORD="root"
 
 #### 開始 ####
@@ -50,5 +50,9 @@ echo "MYSQL_USER=${MYSQL_USER}" >> .env
 echo "MYSQL_PASSWORD=${MYSQL_PASSWORD}" >> .env
 echo "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" >> .env
 #echo "MYSQL_PORT=${MYSQL_PORT}" >> .env
+
+
+# 設定專案名稱，供設定 container name 之用
+./set_app_name.sh
 
 printf "\n>>> .env 設定完成！！\n\n"
