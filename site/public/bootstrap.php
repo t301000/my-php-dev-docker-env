@@ -6,6 +6,9 @@
     require_once __DIR__ . '/../vendor/autoload.php';
     require_once __DIR__ . '/config.php';
 
+    // 啟用 session
+    session_start();
+
     // 開關錯誤報告
     if (DEBUG_MODE) {
         error_reporting(E_ALL);

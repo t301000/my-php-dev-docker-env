@@ -19,6 +19,22 @@
         }
     }
 
+    if (! function_exists('pd')) {
+        /**
+         * print_r and die
+         *
+         * @param      $item
+         * @param bool $die   是否結束程式
+         */
+        function pd($item, $die = false) {
+            echo '<pre>';
+            print_r($item);
+            echo '</pre>';
+
+            if ($die) die();
+        }
+    }
+
     if (! function_exists('starts_with')) {
         /**
          * 檢查字串是否為 指定字串 或 陣列中某字串 開頭
@@ -56,5 +72,20 @@
             }
 
             return false;
+        }
+    }
+
+    if (! function_exists('headerTo')) {
+        /**
+         * 重導向
+         *
+         * @param string $to
+         *
+         * @return void
+         */
+        function headerTo(string $to)
+        {
+            header("Location: {$to}");
+            exit();
         }
     }
