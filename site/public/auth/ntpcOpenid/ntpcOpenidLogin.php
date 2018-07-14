@@ -62,11 +62,13 @@
                 ]
             ]
         ];
-        $_SESSION['user'] = $fakeUserData;
-        headerTo('../index.php');
+        setUserThenCheck($fakeUserData);
         exit();
     }
 
+    /*******************************
+     * OpenID 認證流程
+     *******************************/
 
     $openid = new LightOpenID(DOMAIN_NAME);
 
@@ -76,9 +78,7 @@
             if ($openid->validate()) {
                 // 驗證成功
                 $user_data = getOpenidUserData($openid);
-                $_SESSION['user'] = $fakeUserData;
-                headerTo('../index.php');
-
+                setUserThenCheck($user_data);
             } else {
                 // 驗證失敗
                 echo 'OpenID login failed';
@@ -92,6 +92,7 @@
         default:
             startOpenidAuth($openid);
     }
+
 
     /***************************************************
      * 函數區
@@ -110,6 +111,16 @@
         headerTo($openid->authUrl());
     }
 
+
+    /**
+     * 將 user data 存入 session，轉向至登入規則檢查
+     *
+     * @param array $userData
+     */
+    function setUserThenCheck(array $userData) {
+        $_SESSION['user'] = $userData;
+        headerTo('ntpcOpenidLoginCheck.php');
+    }
 
     /**
      * 取得 OpenID user data
