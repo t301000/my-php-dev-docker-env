@@ -23,10 +23,10 @@
         $canLogin = checkWhiteList($_SESSION['ntpc_user_data']['openid_username']) ? true : checkAuthInfoRules($_SESSION['ntpc_user_data']['auth_info'][0]);
         if ($canLogin) {
             // 通過規則，可以登入
-            echo 'can login';
+            headerTo(OPENID_REDIRECT_TO_AFTER_CHECK_PASS);
         } else {
             // 未通過，拒絕登入
-            echo 'can not login';
+            echo '不符合登入規則，無法登入';
         }
     }
 

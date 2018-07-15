@@ -5,6 +5,8 @@
 
     // 用於 OpenID
     define('DOMAIN_NAME', 'localhost');
+    // 成功通過規則檢查後重導到哪裡
+    define('OPENID_REDIRECT_TO_AFTER_CHECK_PASS', '/auth/auth.php?op=ntpcLogin');
     // OpenID 取得欄位
     define('OPENID_REQUIRED', [
         // 'namePerson/friendly', // 暱稱
@@ -21,7 +23,7 @@
     define('OPENID_RULES', []);
     // OpenID 帳號白名單，陣列
     define('OPENID_ACCOUNT_WHITE_LIST', []);
-    // 是否使用假資料，須同時開啟除錯才有效
+    // 是否使用假資料，開發階段有需要才設為 true
     define('FAKE_OPENID_USER', true);
     // 啟用假資料時才設定假資料常數
     if (FAKE_OPENID_USER) {
