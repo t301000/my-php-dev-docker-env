@@ -18,11 +18,9 @@
         'pref/timezone' // 授權資訊，含單位代碼、單位全銜、職務別、職稱別、身份別等資料，陣列
     ]);
     // 授權資訊登入規則，空陣列代表不設限，陣列元素必須為陣列
-    define('OPENID_RULES', [
-        ['id' => '012345', "role" => ['教師1', '教師'], "groups" => ["資訊組長1", "資訊組長2"]]
-    ]);
+    define('OPENID_RULES', []);
     // OpenID 帳號白名單，陣列
-    define('OPENID_ACCOUNT_WHITE_LIST', ['myid']);
+    define('OPENID_ACCOUNT_WHITE_LIST', []);
     // 是否使用假資料，須同時開啟除錯才有效
     define('FAKE_OPENID_USER', true);
     // 啟用假資料時才設定假資料常數
