@@ -3,66 +3,11 @@
      * 處理 NTPC OpenID Login
      */
 
-    require_once __DIR__ . '/../bootstrap.php';
+    require_once __DIR__ . '/../../bootstrap.php';
 
-    // 同時開啟除錯與使用假資料時，開發階段
-    if (DEBUG_MODE and FAKE_OPENID_USER) {
-        $fakeUserData = [
-            // OpenID 帳號
-            "openid_username" => "myid",
-            // 識別碼
-            "id_code" => "5EE2EFCE20722348C2E27AA5E21F60FE69F811651068288F6F7F264BAF4638FB",
-            // 姓名
-            "real_name" => "林小明",
-            // 暱稱
-            "nick_name" => "林小明",
-            // 性別
-            "gender" => "男",
-            // 生日
-            "birthday" => "1983-06-25",
-            // 公務信箱
-            "email" => "myid@apps.ntpc.edu.tw",
-            // 單位（簡稱）
-            "schoolNameShort" => "xx國中",
-            // 年級
-            "grade" => "00",
-            // 班級
-            "class" => "00",
-            // 座號
-            "num" => "00",
-            // 授權資訊(陣列)
-            // 依序為：id 單位代碼、name 單位全銜、role 身份別、title 職務別、groups 職稱別(陣列)
-            "auth_info" => [
-                [
-                    "id" => "012345",
-                    "name" => "新北市立xx國民中學",
-                    "role" => "教師",
-                    "title" => "教師兼組長",
-                    "groups" => [
-                        "資訊組長"
-                    ]
-                ],
-                [
-                    "id" => "023456",
-                    "name" => "新北市oooo中心",
-                    "role" => "教師",
-                    "title" => "跨校人員",
-                    "groups" => [
-                        "資訊組長"
-                    ]
-                ],
-                [
-                    "id" => "012345",
-                    "name" => "新北市立xx國民中學",
-                    "role" => "家長",
-                    "title" => "其他",
-                    "groups" => [
-                        "其他"
-                    ]
-                ]
-            ]
-        ];
-        setUserThenCheck($fakeUserData);
+    // 開啟使用假資料
+    if (FAKE_OPENID_USER) {
+        setUserThenCheck(FAKE_OPENID_USER_DATA);
         exit();
     }
 
@@ -118,7 +63,7 @@
      * @param array $userData
      */
     function setUserThenCheck(array $userData) {
-        $_SESSION['user'] = $userData;
+        $_SESSION['ntpc_user_data'] = $userData;
         headerTo('ntpcOpenidLoginCheck.php');
     }
 

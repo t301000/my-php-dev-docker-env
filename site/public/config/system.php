@@ -19,5 +19,5 @@
     // 字元編碼
     define('DB_CHARSET', 'utf8');
 
-    // 是否關閉模擬 prepare，確定資料庫有支援 prepare 才設為 true
+    // 是否關閉模擬 prepare，確定資料庫有支援 prepare 才設為 false
     define('PDO_EMULATE_PREPARES', false);
