@@ -25,6 +25,8 @@
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, PDO_EMULATE_PREPARES);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        // 是否強制將整數以字串取回
+        $pdo->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
     } catch (PDOException $e) {
         echo "資料庫連線失敗<br>";
         echo "error code: ". $e->getCode() . "<br>";
