@@ -21,8 +21,8 @@
     define('OPENID_RULES', []);
     // OpenID 帳號白名單，陣列
     define('OPENID_ACCOUNT_WHITE_LIST', []);
-    // 是否使用假資料，須同時開啟除錯才有效
-    define('FAKE_OPENID_USER', true);
+    // 是否使用假資料，開發階段有需要才設為 true
+    define('FAKE_OPENID_USER', false);
     // 啟用假資料時才設定假資料常數
     if (FAKE_OPENID_USER) {
         define('FAKE_OPENID_USER_DATA', [
