@@ -33,6 +33,9 @@ fi
 
 ./setup-env.sh
 
+# 設定 caddy for laravel or normal project
+./setup-caddy-rewrite.sh
+
 printf "***** 完成 *****\n\n"
 
 printf "執行以下指令啟動 container：\n"
