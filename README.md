@@ -16,6 +16,7 @@
 1. 執行 composer.sh 可以使用 composer
 1. 執行 laravel-new.sh 可以新建 laravel 專案，放置於與 docker 目錄同一層的 site 目錄（若已存在會先備份）
 1. 若要執行 laravel 專案，則 .env 中 PHP 版本須視需要變更，docker-compose-prod.yml 中 php-fpm tag 也須視需要變更
+1. 執行 php-artisan.sh 可以進入 php-fpm 容器中執行 php artisan 指令
 
 ## 相關目錄
 - docker： Docker 環境相關設定與腳本檔， .env 在此
