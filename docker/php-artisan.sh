@@ -8,4 +8,5 @@
 DOCKER_COMPOSE="/usr/local/bin/docker-compose"
 PHP_FPM_SERVICE_NAME="php-fpm"
 
-$DOCKER_COMPOSE exec $PHP_FPM_SERVICE_NAME php artisan $@
+
+$DOCKER_COMPOSE exec -u `id -u`:`id -g` $PHP_FPM_SERVICE_NAME php artisan $@
