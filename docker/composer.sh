@@ -18,9 +18,10 @@ if [ ! -d $composer_dir ]; then
 fi
 
 if [ -d $composer_dir ]; then
-docker container run --rm -it \
-    -v $PWD:/app \
-    -v $composer_dir:/tmp \
-    -u $uid:$gid \
-    composer $@
+    cd ../site
+    docker container run --rm -it \
+        -v $PWD:/app \
+        -v $composer_dir:/tmp \
+        -u $uid:$gid \
+        composer $@
 fi
