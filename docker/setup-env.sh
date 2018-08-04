@@ -9,10 +9,20 @@ MYSQL_PASSWORD="secret"
 #MYSQL_PORT="3306"
 MYSQL_ROOT_PASSWORD="root"
 
+PHP_VER="7.0"
+
 #### 開始 ####
 
-echo "***** 設定 MySQL *****"
+echo ""
+echo "***** 設定 PHP 版本與 MySQL *****"
 printf "按下 Ctrl + c 可中斷\n\n"
+
+
+value=""
+read -p "PHP 版本：(預設： 7.0) [7.0 / 7.1 / 7.2] " value
+if [[ "$value" != "" ]]; then
+    PHP_VER=$value
+fi
 
 
 value=""
@@ -44,6 +54,9 @@ fi
 #if [[ "$value" != "" ]]; then
 #    MYSQL_PORT=$value
 #fi
+
+sed -i "s/^PHP_VERSION=.*/PHP_VERSION=${PHP_VER}/" .env
+
 
 echo "MYSQL_DATABASE=${MYSQL_DATABASE}" >> .env
 echo "MYSQL_USER=${MYSQL_USER}" >> .env

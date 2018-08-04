@@ -10,7 +10,7 @@ services:
 
 ### PHP-FPM ##############################################
     php-fpm:
-      image: t301000/xoops.easy.dock.php-fpm:latest
+      image: t301000/xoops.easy.dock.php-fpm:${PHP_VERSION}
       container_name: ${APP_NAME}_php-fpm
       volumes:
         - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
