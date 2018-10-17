@@ -17,11 +17,13 @@ do
  echo "1. 設定 Docker 環境"
  echo "2. 建立 Laravel 專案"
  echo "3. 設定 Laravel 環境"
- echo "4. 啟動容器"
- echo "5. 停止並移除容器"
- echo "6. 清除檔案：資料庫、web log"
- echo "7. 離開"
- echo -n "Please enter option [1 - 7] "
+ echo "4. 下載 adminer，建立 phpinfo.php"
+ echo "5. 啟動容器"
+ echo "6. 停止並移除容器"
+ echo "7. 清除檔案：資料庫、web log"
+ echo "8. 進入 php-fpm 容器"
+ echo "q. 離開"
+ echo -n "Please enter option [1 - 8] "
  read opt
  case $opt in
   1) echo "************ 設定 Docker 環境 *************";
@@ -30,13 +32,17 @@ do
      ./laravel-new.sh;;
   3) echo "************ 設定 Laravel 環境 *************";
      ./edit-laravel-env.sh;;
-  4) echo "************ 啟動容器 *************";
+  4) echo "************ 下載 adminer，建立 phpinfo.php *************";
+     ./get-adminer-phpinfo.sh;;
+  5) echo "************ 啟動容器 *************";
      ./up.sh;;
-  5) echo "************ 停止並移除容器 *************";
+  6) echo "************ 停止並移除容器 *************";
      ./down.sh;;
-  6) echo "************ 清除檔案：資料庫、web log *************";
+  7) echo "************ 清除檔案：資料庫、web log *************";
      ./clean.sh;;
-  7) echo "************ 離開 *************";
+  8) echo "************ 進入 php-fpm 容器 *************";
+     ./enter-php-fpm.sh;;
+  [qQ]) echo "************ 離開 *************";
      exit 1;;
   *) echo "錯誤的選項： $opt";
      echo "按下 [enter] 鍵繼續. . .";
