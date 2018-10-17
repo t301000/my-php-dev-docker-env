@@ -46,7 +46,7 @@ else
     if [[ $ans == "" ]]; then
         ans="secret"
     fi
-    db_password="DB_DATABASE=${ans}"
+    db_password="DB_PASSWORD=${ans}"
 
     echo ""
     echo "以下是您的設定："
