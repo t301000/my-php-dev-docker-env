@@ -24,29 +24,19 @@ read -p "以 vim 編輯？ [y/N] " ans
 if [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
     vim $file_path
 else
-    read -p "DB_HOST ？ (預設： mysql) " ans
-    if [[ $ans == "" ]]; then
-        ans="mysql"
-    fi
-    db_host="DB_HOST=${ans}"
+    echo ""
+    echo "將抓取 docker-compose 的設定值"
+        
+    db_host="DB_HOST=mysql"
 
-    read -p "DB_DATABASE ？ (預設： default) " ans
-    if [[ $ans == "" ]]; then
-        ans="default"
-    fi
-    db_database="DB_DATABASE=${ans}"
+    default=`cat .env |grep ^MYSQL_DATABASE= | awk 'BEGIN {FS="="}; {print $2}'`
+    db_database="DB_DATABASE=${default}"
 
-    read -p "DB_USERNAME ？ (預設： default) " ans
-    if [[ $ans == "" ]]; then
-        ans="default"
-    fi
-    db_username="DB_USERNAME=${ans}"
+    default=`cat .env |grep ^MYSQL_USER= | awk 'BEGIN {FS="="}; {print $2}'`
+    db_username="DB_USERNAME=${default}"
 
-    read -p "DB_PASSWORD ？ (預設： secret) " ans
-    if [[ $ans == "" ]]; then
-        ans="secret"
-    fi
-    db_password="DB_PASSWORD=${ans}"
+    default=`cat .env |grep ^MYSQL_PASSWORD= | awk 'BEGIN {FS="="}; {print $2}'`
+    db_password="DB_PASSWORD=${default}"
 
     echo ""
     echo "以下是您的設定："
