@@ -129,8 +129,9 @@ function mainmenu() {
      echo "3. 下載 adminer，建立 phpinfo.php"
      echo "4. 啟動容器"
      echo "5. 停止並移除容器"
-     echo "6. 清除檔案：資料庫、web log"
-     echo "7. 進入 php-fpm 容器"
+     echo "6. 開啟 / 關閉 rewrite 並重新啟動 Caddy"
+     echo "7. 清除檔案：資料庫、web log"
+     echo "8. 進入 php-fpm 容器"
      echo "p. 啟動 portainer 容器"
      echo "q. 離開"
      echo -n "請輸入選項： "
@@ -152,11 +153,17 @@ function mainmenu() {
          ./down.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      6) echo "************ 清除檔案：資料庫、web log *************";
+      6) echo "************ 開啟 / 關閉 rewrite 並重新啟動 Caddy *************";
+         ./setup-caddy-rewrite.sh
+         echo ">>>> 重新啟動 Caddy ...."
+         $docker_compose restart caddy
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      7) echo "************ 清除檔案：資料庫、web log *************";
          ./clean.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      7) echo "************ 進入 php-fpm 容器 *************";
+      8) echo "************ 進入 php-fpm 容器 *************";
          ./enter-php-fpm.sh;;
 
       [pP]) echo "************ 啟動 portainer 容器 *************";
