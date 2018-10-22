@@ -59,7 +59,7 @@ function startServiceSubmenu() {
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       
-      [bB])
+      [bB]) # 返回上一層選單
         mainmenu;;
 
       *) echo "錯誤的選項： $opt";
@@ -69,6 +69,50 @@ function startServiceSubmenu() {
     done
 }
 
+
+# Laravel 子選單
+function laravelSubmenu() {
+    while :
+    do
+     clear
+     echo "********** Laravel 選單 **********"
+     echo "1. 建立 Laravel 專案 (預設)"
+     echo "2. 設定 Laravel 環境 .env"
+     echo "3. 下載 Laravel 中文語系檔"
+     echo "4. 設定 config/app.php"
+     echo "b. 返回上一層選單"
+     echo -n "請輸入選項： "
+     read opt
+     case $opt in
+      1|"") echo "************ 建立 Laravel 專案 (預設) *************";
+         ./laravel-new.sh
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      2) echo "************ 設定 Laravel 環境 .env *************";
+         ./edit-laravel-env.sh 
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      3) echo "************ 下載 Laravel 中文語系檔 *************";
+         ./get-laravel-lang.sh
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      4) echo "************ 設定 config/app.php *************";
+         ./edit-laravel-config-app-php.sh 
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      
+      
+      [bB]) # 返回上一層選單
+        mainmenu;;
+
+      *) echo "錯誤的選項： $opt";
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+    esac
+    done
+}
+
+
 # 主選單
 function mainmenu() {
     while :
@@ -76,14 +120,12 @@ function mainmenu() {
      clear
      echo "********** 主選單 **********"
      echo "1. 設定 Docker 環境 .env"
-     echo "2. 建立 Laravel 專案"
-     echo "3. 設定 Laravel 環境 .env"
-     echo "4. 下載 Laravel 中文語系檔"
-     echo "5. 下載 adminer，建立 phpinfo.php"
-     echo "6. 啟動容器"
-     echo "7. 停止並移除容器"
-     echo "8. 清除檔案：資料庫、web log"
-     echo "9. 進入 php-fpm 容器"
+     echo "2. Laravel 選單"
+     echo "3. 下載 adminer，建立 phpinfo.php"
+     echo "4. 啟動容器"
+     echo "5. 停止並移除容器"
+     echo "6. 清除檔案：資料庫、web log"
+     echo "7. 進入 php-fpm 容器"
      echo "p. 啟動 portainer 容器"
      echo "q. 離開"
      echo -n "請輸入選項： "
@@ -93,33 +135,23 @@ function mainmenu() {
          ./prepare.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      2) echo "************ 建立 Laravel 專案 *************";
-         ./laravel-new.sh
-         echo "按下 [enter] 鍵繼續. . .";
-         read enterKey;;
-      3) echo "************ 設定 Laravel 環境 .env *************";
-         ./edit-laravel-env.sh
-         echo "按下 [enter] 鍵繼續. . .";
-         read enterKey;;
-      4) echo "************ 下載 Laravel 中文語系檔 *************";
-         ./get-laravel-lang.sh
-         echo "按下 [enter] 鍵繼續. . .";
-         read enterKey;;
-      5) echo "************ 下載 adminer，建立 phpinfo.php *************";
+      2) # Laravel 選單
+         laravelSubmenu;;
+      3) echo "************ 下載 adminer，建立 phpinfo.php *************";
          ./get-adminer-phpinfo.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      6)
+      4) # 啟動容器選單
          startServiceSubmenu;;
-      7) echo "************ 停止並移除容器 *************";
+      5) echo "************ 停止並移除容器 *************";
          ./down.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      8) echo "************ 清除檔案：資料庫、web log *************";
+      6) echo "************ 清除檔案：資料庫、web log *************";
          ./clean.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      9) echo "************ 進入 php-fpm 容器 *************";
+      7) echo "************ 進入 php-fpm 容器 *************";
          ./enter-php-fpm.sh;;
 
       [pP]) echo "************ 啟動 portainer 容器 *************";
