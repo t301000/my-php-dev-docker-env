@@ -34,7 +34,7 @@ function startServiceSubmenu() {
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       2) echo "************ 啟動 Caddy + php-fpm *************";
-         $docker_compose up -d caddy php-fpm 
+         $docker_compose up -d caddy php-fpm
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       3) echo "************ 啟動 MySQL *************";
@@ -42,23 +42,23 @@ function startServiceSubmenu() {
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       4) echo "************ 重新啟動 Caddy *************";
-         $docker_compose restart caddy 
+         $docker_compose restart caddy
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       5) echo "************ 重新啟動 php-fpm *************";
-         $docker_compose restart php-fpm 
+         $docker_compose restart php-fpm
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       4) echo "************ 重新啟動 MySQL *************";
-         $docker_compose restart mysql 
+         $docker_compose restart mysql
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
 
       [sS]) echo "************ 查看目前服務/容器狀態 *************";
-         $docker_compose ps 
+         $docker_compose ps
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      
+
       [bB]) # 返回上一層選單
         mainmenu;;
 
@@ -80,6 +80,7 @@ function laravelSubmenu() {
      echo "2. 設定 Laravel 環境 .env"
      echo "3. 下載 Laravel 中文語系檔"
      echo "4. 設定 config/app.php"
+     echo "5. 安裝 t301000/laravel-ntpc-openid"
      echo "b. 返回上一層選單"
      echo -n "請輸入選項： "
      read opt
@@ -89,7 +90,7 @@ function laravelSubmenu() {
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       2) echo "************ 設定 Laravel 環境 .env *************";
-         ./edit-laravel-env.sh 
+         ./edit-laravel-env.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       3) echo "************ 下載 Laravel 中文語系檔 *************";
@@ -97,11 +98,15 @@ function laravelSubmenu() {
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       4) echo "************ 設定 config/app.php *************";
-         ./edit-laravel-config-app-php.sh 
+         ./edit-laravel-config-app-php.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      
-      
+      5) echo "************ 安裝 t301000/laravel-ntpc-openid *************";
+         ./install-laravel-ntpc-openid.sh
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+
+
       [bB]) # 返回上一層選單
         mainmenu;;
 
@@ -158,10 +163,10 @@ function mainmenu() {
          echo -n "確定？ [y/N] "
          read ans
          if [[ "$ans" == "y" ]] || [[ "$ans" == "Y" ]]; then
-            ./run_portainer.sh      
+            ./run_portainer.sh
          else
-            echo "取消"   
-         fi     
+            echo "取消"
+         fi
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
 
