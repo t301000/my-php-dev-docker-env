@@ -55,8 +55,9 @@ else
         sed -i "s/DB_PASSWORD=secret/$db_password/g" $file_path
         echo "**** 設定 laravel .env 完成"
     fi
-
-    echo "**** 未變更 laravel .env"
+    if [[ $ans == "N" ]] || [[ $ans == "n" ]]; then
+        echo "**** 未變更 laravel .env"
+    fi
 
 fi
 
