@@ -6,12 +6,33 @@ if [ -r /etc/os-release ]; then
     lsb_dist="$(. /etc/os-release && echo "$ID")"
 fi
 
-if [ "$lsb_dist" == "centos" ]; then
-    sudo yum install -y vim curl git unzip wget
-else
-    sudo apt install -y vim curl git unzip wget
+# 檢查需要的程式是否存在
+packages=""
+if [[ ! -f /usr/bin/vim ]]; then
+    packages=" vim"
+fi
+if [[ ! -f /usr/bin/curl ]]; then
+    packages=$packages" curl"
+fi
+if [[ ! -f /usr/bin/git ]]; then
+    packages=$packages" git"
+fi
+if [[ ! -f /usr/bin/unzip ]]; then
+    packages=$packages" unzip"
+fi
+if [[ ! -f /usr/bin/wget ]]; then
+    packages=$packages" wget"
+fi
+# 安裝缺少的程式
+if [[ $packages != "" ]]; then
+    if [ "$lsb_dist" == "centos" ]; then
+        sudo yum install -y $packages
+    else
+        sudo apt install -y $packages
+    fi
 fi
 
+exit 0
 if [ ! -d ../db_data ] ; then
     mkdir -p ../db_data/mysql
     chmod 777 -Rf ../db_data
