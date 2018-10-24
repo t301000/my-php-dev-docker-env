@@ -81,6 +81,7 @@ function laravelSubmenu() {
      echo "3. 下載 Laravel 中文語系檔"
      echo "4. 設定 config/app.php"
      echo "5. 安裝 t301000/laravel-ntpc-openid"
+     echo "6. 安裝 barryvdh/laravel-ide-helper"
      echo "b. 返回上一層選單"
      echo -n "請輸入選項： "
      read opt
@@ -103,6 +104,10 @@ function laravelSubmenu() {
          read enterKey;;
       5) echo "************ 安裝 t301000/laravel-ntpc-openid *************";
          ./install-laravel-ntpc-openid.sh
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      6) echo "************ 安裝 barryvdh/laravel-ide-helper *************";
+         ./install-ide-helper.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
 
