@@ -20,5 +20,5 @@ if [ ! -d $composer_dir ]; then
 fi
 
 if [ -d $composer_dir ]; then
-    $DOCKER_COMPOSE run -u $uid:$gid $PHP_FPM_SERVICE_NAME composer $@
+    $DOCKER_COMPOSE exec -u $uid:$gid $PHP_FPM_SERVICE_NAME composer $@ && exit
 fi

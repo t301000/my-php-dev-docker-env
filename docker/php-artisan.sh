@@ -12,4 +12,4 @@ PHP_FPM_SERVICE_NAME="php-fpm"
 uid=$(id -u)
 gid=$(id -g)
 
-$DOCKER_COMPOSE run -u $uid:$gid $PHP_FPM_SERVICE_NAME php artisan $@
+$DOCKER_COMPOSE exec -u $uid:$gid $PHP_FPM_SERVICE_NAME php artisan $@ && exit
