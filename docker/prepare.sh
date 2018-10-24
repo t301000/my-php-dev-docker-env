@@ -32,7 +32,7 @@ if [[ $packages != "" ]]; then
     fi
 fi
 
-exit 0
+
 if [ ! -d ../db_data ] ; then
     mkdir -p ../db_data/mysql
     chmod 777 -Rf ../db_data
