@@ -80,6 +80,11 @@ if [[ $ans == "" ]] || [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
         modifyAuthUserModel
     fi
 
+    echo ""
+    echo ">>>> 在後台界面加入權限管理選項"
+    echo ">>>>   resources/views/vendor/backpack/base/inc/sidebar_content.blade.php"
+    cat backpack-sidebar-content-permission.txt >> ../site/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php
+
     echo "其餘調整請參考："
     echo "https://campus-xoops.tn.edu.tw/modules/tad_book3/page.php?tbdsn=1155"
 fi
