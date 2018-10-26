@@ -34,6 +34,36 @@ function modifyAuthUserModel () {
     sed -i "s/${src}/${to}/g" ../site/config/auth.php
 }
 
+# 產生管制進入後台之 middleware
+function generateMiddleware () {
+    read -p "middleware 名稱？ (預設： AdminMiddleware) " name
+    if [[ $name == "" ]]; then
+        name='AdminMiddleware'
+    fi
+
+    ./php-artisan.sh make:middleware $name
+    sleep 2
+
+    read -p "permission 名稱？ (預設： 後台管理) " permission
+    if [[ $permission == "" ]]; then
+        permission='後台管理'
+    fi
+
+    path="../site/app/Http/Middleware/${name}.php"
+    content="\
+        if (!\$request->user()->hasAnyPermission('${permission}')) {\n\
+            abort(403);\n\
+        }"
+    sed -i "/return \$next/ i \\${content}" $path
+
+    echo "$name 已產生"
+    echo "加入 $name 至 config/backpack/base.php 之 middleware_class"
+    path="../site/config/backpack/base.php"
+    search="\\\Backpack\\\Base\\\app\\\Http\\\Middleware\\\CheckIfAdmin::class"
+    middlewareClass="        \\\App\\\Http\\\Middleware\\\\${name}::class,"
+    sed -i "/${search}/ a \\${middlewareClass}" $path
+}
+
 
 ###############################
 
@@ -84,6 +114,13 @@ if [[ $ans == "" ]] || [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
     echo ">>>> 在後台界面加入權限管理選項"
     echo ">>>>   resources/views/vendor/backpack/base/inc/sidebar_content.blade.php"
     cat backpack-sidebar-content-permission.txt >> ../site/resources/views/vendor/backpack/base/inc/sidebar_content.blade.php
+
+
+    read -p "是否產生管制進入後台之 middleware？ [Y/n] " ans
+    if [[ $ans == "" ]] || [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
+        generateMiddleware
+    fi
+
 
     echo "其餘調整請參考："
     echo "https://campus-xoops.tn.edu.tw/modules/tad_book3/page.php?tbdsn=1155"
