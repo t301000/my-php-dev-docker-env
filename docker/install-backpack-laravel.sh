@@ -57,11 +57,15 @@ function generateMiddleware () {
     sed -i "/return \$next/ i \\${content}" $path
 
     echo "$name 已產生"
-    echo "加入 $name 至 config/backpack/base.php 之 middleware_class"
+    
     path="../site/config/backpack/base.php"
     search="\\\Backpack\\\Base\\\app\\\Http\\\Middleware\\\CheckIfAdmin::class"
-    middlewareClass="        \\\App\\\Http\\\Middleware\\\\${name}::class,"
+    middlewareClass="        \/\/ \\\App\\\Http\\\Middleware\\\\${name}::class,"
     sed -i "/${search}/ a \\${middlewareClass}" $path
+    echo "已加入 $name 至 config/backpack/base.php 之 middleware_class"
+    echo "但為註解狀態未啟用，請新增使用者賦予 ${permission} 權限後啟用之"
+    echo "後台 url 為： /admin"
+    echo ""
 }
 
 
