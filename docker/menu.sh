@@ -86,7 +86,8 @@ function laravelSubmenu() {
      echo "2. 設定 Laravel 環境 .env"
      echo "3. 下載 Laravel 中文語系檔"
      echo "4. 設定 config/app.php"
-     echo "5. 安裝 packages for laravel 選單"
+     echo "5. make:auth and migrate"
+     echo "6. 安裝 packages for laravel 選單"
      echo ""
      echo "----------"
      echo ""
@@ -116,7 +117,13 @@ function laravelSubmenu() {
          ./edit-laravel-config-app-php.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      5) # 啟動 laravel 安裝 packages 子選單
+      5) echo "************ php artisan make:auth and migrate *************";
+         ./php-artisan.sh make:auth
+         sleep 2
+         ./php-artisan.sh migrate
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      6) # 啟動 laravel 安裝 packages 子選單
          packagesInstallForLaravelSubmenu;;
 
 
