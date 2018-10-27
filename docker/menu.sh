@@ -18,14 +18,19 @@ function startServiceSubmenu() {
     do
      clear
      echo "********** 啟動容器 **********"
+     echo ""
      echo "1. 全部啟動 (預設)"
      echo "2. 啟動 Caddy + php-fpm"
      echo "3. 啟動 MySQL"
      echo "4. 重新啟動 Caddy"
      echo "5. 重新啟動 php-fpm"
      echo "6. 重新啟動 MySQL"
+     echo ""
+     echo "----------"
+     echo ""
      echo "s. 查看目前服務/容器狀態"
      echo "b. 返回上一層選單"
+     echo ""
      echo -n "請輸入選項： "
      read opt
      case $opt in
@@ -49,7 +54,7 @@ function startServiceSubmenu() {
          $docker_compose restart php-fpm
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      4) echo "************ 重新啟動 MySQL *************";
+      6) echo "************ 重新啟動 MySQL *************";
          $docker_compose restart mysql
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
@@ -76,15 +81,18 @@ function laravelSubmenu() {
     do
      clear
      echo "********** Laravel 選單 **********"
+     echo ""
      echo "1. 建立 Laravel 專案 (預設)"
      echo "2. 設定 Laravel 環境 .env"
      echo "3. 下載 Laravel 中文語系檔"
      echo "4. 設定 config/app.php"
-     echo "5. 安裝 t301000/laravel-ntpc-openid"
-     echo "6. 安裝 barryvdh/laravel-ide-helper"
-     echo "7. 安裝 backpack for laravel"
-     echo "8. 安裝 laravel telescope"
+     echo "5. 安裝 packages for laravel 選單"
+     echo ""
+     echo "----------"
+     echo ""
+     echo "s. 啟動全部服務/容器"
      echo "b. 返回上一層選單"
+     echo ""
      echo -n "請輸入選項： "
      read opt
      case $opt in
@@ -104,26 +112,63 @@ function laravelSubmenu() {
          ./edit-laravel-config-app-php.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      5) echo "************ 安裝 t301000/laravel-ntpc-openid *************";
+      5) # 啟動 laravel 安裝 packages 子選單
+         packagesInstallForLaravelSubmenu;;
+
+
+      [sS]) echo "************ 啟動全部服務/容器 *************";
+        $docker_compose up -d
+        echo "按下 [enter] 鍵繼續. . .";
+        read enterKey;;
+      [bB]) # 返回上一層選單
+        mainmenu;;
+
+      *) echo "錯誤的選項： $opt";
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+    esac
+    done
+}
+
+# 啟動 laravel 安裝 packages 子選單
+function packagesInstallForLaravelSubmenu() {
+    while :
+    do
+     clear
+     echo "********** 安裝 packages for laravel **********"
+     echo ""
+     echo "1. 安裝 t301000/laravel-ntpc-openid"
+     echo "2. 安裝 barryvdh/laravel-ide-helper"
+     echo "3. 安裝 backpack for laravel"
+     echo "4. 安裝 laravel telescope"
+     echo ""
+     echo "----------"
+     echo ""
+     echo "b. 返回上一層選單"
+     echo ""
+     echo -n "請輸入選項： "
+     read opt
+     case $opt in
+      1) echo "************ 安裝 t301000/laravel-ntpc-openid *************";
          ./install-laravel-ntpc-openid.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      6) echo "************ 安裝 barryvdh/laravel-ide-helper *************";
+      2) echo "************ 安裝 barryvdh/laravel-ide-helper *************";
          ./install-ide-helper.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      7) echo "************ 安裝 backpack for laravel *************";
+      3) echo "************ 安裝 backpack for laravel *************";
          ./install-backpack-laravel.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      8) echo "************ 安裝 laravel telescope *************";
+      4) echo "************ 安裝 laravel telescope *************";
          ./install-laravel-telescope.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
 
 
       [bB]) # 返回上一層選單
-        mainmenu;;
+        laravelSubmenu;;
 
       *) echo "錯誤的選項： $opt";
          echo "按下 [enter] 鍵繼續. . .";
@@ -139,6 +184,7 @@ function mainmenu() {
     do
      clear
      echo "********** 主選單 **********"
+     echo ""
      echo "1. 設定 Docker 環境 .env"
      echo "2. Laravel 選單"
      echo "3. 下載 adminer，建立 phpinfo.php"
@@ -147,8 +193,12 @@ function mainmenu() {
      echo "6. 開啟 / 關閉 rewrite 並重新啟動 Caddy"
      echo "7. 清除檔案：資料庫、web log"
      echo "8. 進入 php-fpm 容器"
+     echo ""
+     echo "----------"
+     echo ""
      echo "p. 啟動 portainer 容器"
      echo "q. 離開"
+     echo ""
      echo -n "請輸入選項： "
      read opt
      case $opt in
