@@ -29,7 +29,7 @@ function startServiceSubmenu() {
      echo "----------"
      echo ""
      echo "s. 查看目前服務/容器狀態"
-     echo "b. 返回上一層選單"
+     echo "q. 離開"
      echo ""
      echo -n "請輸入選項： "
      read opt
@@ -64,7 +64,7 @@ function startServiceSubmenu() {
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
 
-      [bB]) # 返回上一層選單
+      [qQ]) # 返回上一層選單
         mainmenu;;
 
       *) echo "錯誤的選項： $opt";
@@ -86,13 +86,13 @@ function laravelSubmenu() {
      echo "2. 設定 Laravel 環境 .env"
      echo "3. 下載 Laravel 中文語系檔"
      echo "4. 設定 config/app.php"
-     echo "5. make:auth and migrate"
+     echo "5. artisan 選單"
      echo "6. 安裝 packages for laravel 選單"
      echo ""
      echo "----------"
      echo ""
      echo "s. 啟動全部服務/容器"
-     echo "b. 返回上一層選單"
+     echo "q. 離開"
      echo ""
      echo -n "請輸入選項： "
      read opt
@@ -117,12 +117,8 @@ function laravelSubmenu() {
          ./edit-laravel-config-app-php.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
-      5) echo "************ php artisan make:auth and migrate *************";
-         ./php-artisan.sh make:auth
-         sleep 2
-         ./php-artisan.sh migrate
-         echo "按下 [enter] 鍵繼續. . .";
-         read enterKey;;
+      5) echo "************ artisan 選單 *************";
+         ./artisan-menu.sh;;
       6) # 啟動 laravel 安裝 packages 子選單
          packagesInstallForLaravelSubmenu;;
 
@@ -131,7 +127,7 @@ function laravelSubmenu() {
         $docker_compose up -d
         echo "按下 [enter] 鍵繼續. . .";
         read enterKey;;
-      [bB]) # 返回上一層選單
+      [qQ]) # 返回上一層選單
         mainmenu;;
 
       *) echo "錯誤的選項： $opt";
@@ -155,7 +151,7 @@ function packagesInstallForLaravelSubmenu() {
      echo ""
      echo "----------"
      echo ""
-     echo "b. 返回上一層選單"
+     echo "q. 離開"
      echo ""
      echo -n "請輸入選項： "
      read opt
@@ -178,8 +174,9 @@ function packagesInstallForLaravelSubmenu() {
          read enterKey;;
 
 
-      [bB]) # 返回上一層選單
-        laravelSubmenu;;
+      [qQ]) # 返回上一層選單
+         laravelSubmenu;;
+
 
       *) echo "錯誤的選項： $opt";
          echo "按下 [enter] 鍵繼續. . .";
