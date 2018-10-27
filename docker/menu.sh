@@ -83,6 +83,7 @@ function laravelSubmenu() {
      echo "5. 安裝 t301000/laravel-ntpc-openid"
      echo "6. 安裝 barryvdh/laravel-ide-helper"
      echo "7. 安裝 backpack for laravel"
+     echo "8. 安裝 laravel telescope"
      echo "b. 返回上一層選單"
      echo -n "請輸入選項： "
      read opt
@@ -113,6 +114,10 @@ function laravelSubmenu() {
          read enterKey;;
       7) echo "************ 安裝 backpack for laravel *************";
          ./install-backpack-laravel.sh
+         echo "按下 [enter] 鍵繼續. . .";
+         read enterKey;;
+      8) echo "************ 安裝 laravel telescope *************";
+         ./install-laravel-telescope.sh
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
 
