@@ -98,6 +98,10 @@ function laravelSubmenu() {
      case $opt in
       1|"") echo "************ 建立 Laravel 專案 (預設) *************";
          ./laravel-new.sh
+         echo ""
+         echo "安裝版本："
+         ./php-artisan.sh --version
+         echo ""
          echo "按下 [enter] 鍵繼續. . .";
          read enterKey;;
       2) echo "************ 設定 Laravel 環境 .env *************";
