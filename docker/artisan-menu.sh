@@ -12,6 +12,7 @@ function mainmenu() {
         clear
         echo "********** php artisan 選單 **********"
         echo ""
+        echo "0. 查看 laravel 版本"
         echo "1. make:auth"
         echo "2. migrate"
         echo "3. migrate:rollback"
@@ -25,6 +26,11 @@ function mainmenu() {
         echo -n "請輸入選項： "
         read opt
         case $opt in
+            0) echo "************ 查看 laravel 版本 *************";
+                ./php-artisan.sh --version
+                echo ""
+                echo "按下 [enter] 鍵繼續. . .";
+                read enterKey;;
             1) echo "************ php artisan make:auth *************";
                 ./php-artisan.sh make:auth
                 echo ""
