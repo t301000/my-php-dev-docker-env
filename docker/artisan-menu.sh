@@ -5,8 +5,8 @@
 ###################################
 #!/bin/bash
 
-# php artisan 主選單
-function mainmenu() {
+# php artisan 選單
+function menu() {
     while :
     do
         clear
@@ -55,7 +55,7 @@ function mainmenu() {
             [pP]) # 進入 php-fpm 容器
                 ./enter-php-fpm.sh;;
 
-            [qQ]) # 主要選單
+            [qQ]) # 離開
                 exit 0;;
 
             *) echo "錯誤的選項： $opt";
@@ -65,5 +65,5 @@ function mainmenu() {
     done
 }
 
-# 執行主選單
-mainmenu
+# 執行選單
+menu
