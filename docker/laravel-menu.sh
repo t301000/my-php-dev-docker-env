@@ -32,6 +32,9 @@ function menu() {
             1|"") echo "************ 建立 Laravel 專案 (預設) *************";
                 ./laravel-new.sh
                 echo ""
+                echo "啟動 php-fpm 服務/容器："
+                $docker_compose up -d php-fpm
+                sleep 2
                 echo "安裝版本："
                 ./php-artisan.sh --version
                 echo ""
