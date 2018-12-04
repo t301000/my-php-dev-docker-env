@@ -17,7 +17,12 @@ function menu() {
         echo "1. 安裝 t301000/laravel-ntpc-openid"
         echo "2. 安裝 barryvdh/laravel-ide-helper"
         echo "3. 安裝 backpack for laravel"
-        echo "4. 安裝 laravel telescope"
+        echo "4. 安裝 recca0120/upload"
+        echo ""
+        echo "Debug tool:"
+        echo "5. 安裝 laravel telescope"
+        echo "6. 安裝 recca0120/laravel-tracy"
+        echo "7. 安裝 barryvdh/laravel-debugbar"
         echo ""
         echo "----------"
         echo ""
@@ -38,8 +43,20 @@ function menu() {
                 ./install-backpack-laravel.sh
                 echo "按下 [enter] 鍵繼續. . .";
                 read enterKey;;
-            4) echo "************ 安裝 laravel telescope *************";
+            4) echo "************ 安裝 recca0120/upload *************";
+                ./install-recca0120_upload.sh
+                echo "按下 [enter] 鍵繼續. . .";
+                read enterKey;;
+            5) echo "************ 安裝 laravel telescope *************";
                 ./install-laravel-telescope.sh
+                echo "按下 [enter] 鍵繼續. . .";
+                read enterKey;;
+            6) echo "************ 安裝 recca0120/laravel-tracy *************";
+                ./install-recca0120_laravel-tracy.sh
+                echo "按下 [enter] 鍵繼續. . .";
+                read enterKey;;
+            7) echo "************ 安裝 barryvdh/laravel-debugbar *************";
+                ./install-barryvdh_laravel-debugbar.sh
                 echo "按下 [enter] 鍵繼續. . .";
                 read enterKey;;
 
