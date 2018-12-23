@@ -131,9 +131,15 @@ if [[ $ans == "" ]] || [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
     unzip permissionmanager-zh-TW.zip
     mv zh-TW/permissionmanager.php ../../site/resources/lang/vendor/backpack/zh-TW/ && cd .. && rm -rf tmp
 
-    read -p "是否在 User Model 中加入 Trait 並修改 config/auth.php 與 config/backpack/base.php？ [Y/n] " ans
+    read -p "是否在 User Model 中加入 Trait？ [Y/n] " ans
     if [[ $ans == "" ]] || [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
         addTraitToUserModel
+    fi
+
+    echo ""
+    echo "**** backpack/base 3.5 版之 後台登入 與 前台登入 預設是分開的"
+    read -p "是否將 後台登入 與 前台登入 分開？ [y/N] " ans
+    if [[ $ans == "" ]] || [[ $ans == "N" ]] || [[ $ans == "n" ]]; then
         modifyAuthUserModel
         modifyBaseGuardAndPasswordsToNull
     fi
