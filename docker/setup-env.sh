@@ -9,7 +9,7 @@ MYSQL_PASSWORD="secret"
 #MYSQL_PORT="3306"
 MYSQL_ROOT_PASSWORD="root"
 
-PHP_VER="7.0"
+PHP_VER="7.1"
 
 #### 開始 ####
 
@@ -19,7 +19,7 @@ printf "按下 Ctrl + c 可中斷\n\n"
 
 
 value=""
-read -p "PHP 版本：(預設： 7.0) [7.0 / 7.1 / 7.2] " value
+read -p "PHP 版本：(預設： 7.1) [7.0 / 7.1 / 7.2] " value
 if [[ "$value" != "" ]]; then
     PHP_VER=$value
 fi
