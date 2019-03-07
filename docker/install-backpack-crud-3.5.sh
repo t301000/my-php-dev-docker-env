@@ -140,9 +140,11 @@ if [[ $ans == "" ]] || [[ $ans == "Y" ]] || [[ $ans == "y" ]]; then
     echo "**** backpack/base 3.5 版之 後台登入 與 前台登入 預設是分開的"
     read -p "是否將 後台登入 與 前台登入 分開？ [y/N] " ans
     if [[ $ans == "" ]] || [[ $ans == "N" ]] || [[ $ans == "n" ]]; then
-        modifyAuthUserModel
+        # modifyAuthUserModel
         modifyBaseGuardAndPasswordsToNull
     fi
+    # 不論是否將前後台登入機制分開，都要改使用之 user model class
+    modifyAuthUserModel
 
     echo ""
     echo ">>>> 在後台界面加入權限管理選項"
